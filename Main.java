@@ -13,6 +13,8 @@ class Game {
     private Boolean isPlayer1Turn = true; 
     private Player player1 = new Player("Player 1", 0);
     private Player player2 = new Player("Player 2", 0);
+    private Wallet player1Wallet = new Wallet("Player 1", 0);
+    private Wallet player2Wallet = new Wallet("Player 2", 0);
 
     public void start() {
         this.scanner = new Scanner(System.in);
@@ -20,10 +22,10 @@ class Game {
 
         while (true) {
             if (isPlayer1Turn) { 
-                doPlayerTurn(player1); 
+                doPlayerTurn(player1, player1Wallet); 
                 isPlayer1Turn = false; 
             } else { 
-                doPlayerTurn(player2);
+                doPlayerTurn(player2, player2Wallet);
                 isPlayer1Turn = true;
             }
 
@@ -40,7 +42,7 @@ class Game {
         scanner.close();
     }
 
-    public void doPlayerTurn(Player player) {
+    public void doPlayerTurn(Player player, Wallet wallet) {
         System.out.println(player.name + ", press enter to roll the dice:");
         String input = scanner.nextLine();
         
@@ -49,7 +51,11 @@ class Game {
             Integer die2Result = Dice.roll();
             Integer diceResult = die1Result + die2Result;
 
-            // add gold
+            wallet.addGold(diceResult);
+            player.gold = wallet.gold;
+
+            System.out.println(player.name + " rolled: " + die1Result + " and " + die2Result + " , totalling " + diceResult);
+            System.out.println(player.name + "'s total gold is now: " + wallet.gold);
         }
     }
 }
@@ -66,6 +72,33 @@ class Player {
     // add get set methods
 
     // add extra turn function
+}
+
+class Wallet {
+    String owner;
+    Integer gold;
+
+    public Wallet(String owner, Integer gold) {
+        this.owner = owner;
+        this.gold = gold;
+    }
+
+    public void addGold(Integer goldAdded) { // these are one-liners to save space
+        switch (goldAdded) {
+            case 2: gold += 250; break;
+            case 3: gold -= 100; break;
+            case 4: gold += 100; break;
+            case 5: gold -= 20; break;
+            case 6: gold += 180; break;
+            case 7: gold += 0; break;
+            case 8: gold -= 70; break;
+            case 9: gold += 60; break;
+            case 10: gold -= 80; break; // have no implemented extra turn
+            case 11: gold -= 50; break;
+            case 12: gold +=650; break;
+            default: break;
+        }
+    }
 }
 
 class Dice {
