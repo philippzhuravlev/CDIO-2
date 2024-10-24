@@ -53,7 +53,8 @@ class Game {
 
             wallet.addGold(diceResult);
             player.gold = wallet.gold;
-
+            String message = Tiles.sendMessage(diceResult);
+            System.out.println(message);
             System.out.println(player.name + " rolled: " + die1Result + " and " + die2Result + " , totalling " + diceResult);
             System.out.println(player.name + "'s total gold is now: " + wallet.gold);
 
@@ -116,6 +117,54 @@ class Wallet {
         }
     }
 }
+class Tiles {
+    //String message = "";
+
+    public static String sendMessage(Integer tileOn) { // these are one-liners to save space
+        String message = "";
+
+        switch (tileOn) {
+            case 2:
+                message = "You entered the tower!\n Inside the tower you found a with a chest with 250 gold in it!\n";
+                break;
+            case 3:
+                message = "Oops, you fell into the Crater!\nGood news: you're now an expert in geology. Bad news: your wallet took a hit. -100 coins!\n";
+                break;
+            case 4:
+                message = "You’ve been welcomed at the Palace Gates.\nThey mistook you for royalty and handed you 100 coins. Don't ask why, just smile and wave!\n";
+                break;
+            case 5:
+                message = "Brrr! The Cold Desert is freezing your hopes and your wallet.\n Your frostbitten fingers fumble away 20 coins.\n";
+                break;
+            case 6:
+                message = "Welcome to the Walled City, where the streets are paved with gold. . .\nwell, maybe not gold, but close enough. You gain 180 coins!\n";
+                break;
+            case 7:
+                message = "You spend some time meditating at the Monastery.\nInner peace is great and all, but your wallet remains unchanged. No gains, no losses.\n";
+                break;
+            case 8:
+                message = "You venture into the Black Cave and... what’s that?\nOh, just your luck running away. You lose 70 coins!\n";
+                break;
+            case 9:
+                message = "The Huts in the Mountain welcome you with open arms and delicious stew.\nThey gift you 60 coins for being such a wonderful guest.\n";
+                break;
+            case 10:
+                message = "Beware the Werewall! Werewall? WTF?!?\nYou lose 80 coins, but the Were og the Wall gives you an extra turn. Spooky, but kinda cool, right?\n";
+                break;
+            case 11:
+                message = "You stumble into The Pit.\nTurns out it's not as deep as your financial loss. You lose 50 coins but climb out relatively unharmed.\n";
+                break;
+            case 12:
+                message = "Jackpot! You’ve struck gold in the Goldmine!\nTime to buy that solid-gold yacht you’ve always dreamed of. +650 coins!\n";
+                break;
+            default:
+                message = "You entered ?VOID? \nHow did you end up here? ";
+                break;
+        }
+       return message;
+    }
+}
+
 
 class Dice {
     private static final Random random = new Random(); 
