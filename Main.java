@@ -56,6 +56,19 @@ class Game {
 
             System.out.println(player.name + " rolled: " + die1Result + " and " + die2Result + " , totalling " + diceResult);
             System.out.println(player.name + "'s total gold is now: " + wallet.gold);
+
+            // extra roll if dice sum is 10
+            if (diceResult == 10) {
+                System.out.println(player.name + " rolled: " + diceResult + " they get another turn");
+
+                if (isPlayer1Turn) { 
+                    doPlayerTurn(player1, player1Wallet); 
+                    isPlayer1Turn = true; 
+                } else { 
+                    doPlayerTurn(player2, player2Wallet);
+                    isPlayer1Turn = false;
+                }
+            }
         }
     }
 }
@@ -70,8 +83,6 @@ class Player {
     }
 
     // add get set methods
-
-    // add extra turn function
 }
 
 class Wallet {
@@ -93,10 +104,15 @@ class Wallet {
             case 7: gold += 0; break;
             case 8: gold -= 70; break;
             case 9: gold += 60; break;
-            case 10: gold -= 80; break; // have no implemented extra turn
+            case 10: gold -= 80; break;
             case 11: gold -= 50; break;
             case 12: gold +=650; break;
             default: break;
+        }
+
+        // Wallet cannot go under 0
+        if (this.gold < 0) {
+            this.gold = 0;
         }
     }
 }
