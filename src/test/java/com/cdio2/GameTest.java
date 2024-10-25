@@ -24,14 +24,14 @@ public class GameTest {
     @Test
     void testGoldBalanceNeverNegative() {
         wallet.addGold(3); // 3 should decrease the wallet by 100
-        assertTrue(wallet.gold >= 0, "Wallet balance should never be negative.");
+        assertTrue(wallet.getGold() >= 0, "Wallet balance should never be negative.");
     }
 
     @Test
     void testGoldAdditionFromDiceRoll() {
-        int initialGold = wallet.gold;
+        int initialGold = wallet.getGold();
         wallet.addGold(6); // 6 should add 180 to the wallet
-        assertEquals(initialGold + 180, wallet.gold);
+        assertEquals(initialGold + 180, wallet.getGold());
     }
 
     @Test
@@ -43,13 +43,13 @@ public class GameTest {
 
     @Test
     void testWinConditionPlayer1() {
-        player.gold = 3000;
-        assertTrue(player.gold >= 3000, "Player should win when reaching 3000 gold.");
+        Player player1 = new Player("Player 1", 3000);
+        assertTrue(player1.getGold() >= 3000, "Player should win when reaching 3000 gold.");
     }
 
     @Test
     void testWinConditionPlayer2() {
         Player player2 = new Player("Player 2", 3000);
-        assertTrue(player2.gold >= 3000, "Player 2 should win when reaching 3000 gold.");
+        assertTrue(player2.getGold() >= 3000, "Player 2 should win when reaching 3000 gold.");
     }
 }
