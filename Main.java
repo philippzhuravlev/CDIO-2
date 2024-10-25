@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        Game game = new Game();
+        Scanner scanner = new Scanner(System.in);
+        Game game = new Game(scanner);
         game.start();
     }
 }
@@ -19,17 +20,21 @@ class Game {
     private Wallet player2Wallet = new Wallet("Player 2", 0);
     private boolean hasExtraTurn = false;
 
+    public Game(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     public void start() {
         this.scanner = new Scanner(System.in);
         scanner.useLocale(java.util.Locale.ENGLISH);
 
         while (true) {
-            String input = scanner.nextLine();
+
             if (isPlayer1Turn) { 
-                doPlayerTurn(player1, player1Wallet, input); 
+                doPlayerTurn(player1, player1Wallet, null); 
                 isPlayer1Turn = false; 
             } else { 
-                doPlayerTurn(player2, player2Wallet, input);
+                doPlayerTurn(player2, player2Wallet, null);
                 isPlayer1Turn = true;
             }
 
@@ -47,13 +52,10 @@ class Game {
     }
 
     public void doPlayerTurn(Player player, Wallet wallet, String input) {
-        System.out.println(player.name + ", press enter to roll the dice:");
-        
-        // while (input.equals("debug")) { // communicates with DiceTester.java file
-        //     GameTester.testGame(player, wallet);
-        //     System.out.println(player.name + ", press enter to roll the dice:");
-        //     input = scanner.nextLine();
-        // }
+        if (input == null) {
+            System.out.println(player.name + ", press enter to roll the dice:");
+            input = scanner.nextLine();
+        }
 
         if (input.equals("")) { // i.e. if enter is pressed
             Integer die1Result = Dice.roll();
@@ -66,18 +68,18 @@ class Game {
             System.out.println(player.name + " rolled: " + die1Result + " and " + die2Result + " , totalling " + diceResult);
             System.out.println(player.name + "'s total gold is now: " + wallet.gold);
 
-            hasExtraTurn = false;
-
             // extra roll if dice sum is 10
             if (diceResult == 10) {
                 Dice.clearFixedRoll(); // testing purposes
                 hasExtraTurn = true; // testing purposes
                 System.out.println(player.name + " rolled: " + diceResult + " they get another turn");
                 doPlayerTurn(player, wallet, "");
+            } else {
+                hasExtraTurn = false;
             }
         }
     }
-
+    // testing purposes
     public boolean hasExtraTurn() {
         return hasExtraTurn;
     }
@@ -133,10 +135,12 @@ class Dice {
     private static final Random random = new Random();
     private static Integer fixedRoll = null;
 
+    // testing purposes
     public static void setFixedRoll(Integer roll) {
         fixedRoll = roll;
     }
 
+    // testing puposes
     public static void clearFixedRoll() {
         fixedRoll = null;
     }
