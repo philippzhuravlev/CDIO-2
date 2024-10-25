@@ -30,10 +30,10 @@ class Game {
 
         while (true) {
             if (isPlayer1Turn) { 
-                doPlayerTurn(player1, player1Wallet); 
+                doPlayerTurn(player1, player1Wallet, null); 
                 isPlayer1Turn = false; 
             } else { 
-                doPlayerTurn(player2, player2Wallet);
+                doPlayerTurn(player2, player2Wallet, null);
                 isPlayer1Turn = true;
             }
 
