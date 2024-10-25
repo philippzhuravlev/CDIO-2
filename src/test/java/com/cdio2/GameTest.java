@@ -4,43 +4,40 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Scanner;
 
 public class GameTest {
 
     private Wallet wallet;
     private Player player;
     private Game game;
+    private Scanner scanner;
 
     @BeforeEach
     void setUp() {
         wallet = new Wallet("TestPlayer", 0);
         player = new Player("TestPlayer", 0);
-        game = new Game();
+        scanner = new Scanner(System.in);
+        game = new Game(scanner);
     }
 
     @Test
     void testGoldBalanceNeverNegative() {
-        wallet.addGold(3); // gold should decrease by 100
+        wallet.addGold(3); // 3 should decrease the wallet by 100
         assertTrue(wallet.gold >= 0, "Wallet balance should never be negative.");
     }
 
     @Test
     void testGoldAdditionFromDiceRoll() {
         int initialGold = wallet.gold;
-        wallet.addGold(6); // based on your addGold implementation, it should add 180
+        wallet.addGold(6); // 6 should add 180 to the wallet
         assertEquals(initialGold + 180, wallet.gold);
     }
 
     @Test
     void testDiceRollTotalTenTriggersExtraTurn() {
-        
-        // set a fixed roll of 10 for the dice
         Dice.setFixedRoll(5);
-        
-        // perform the player's turn, which should recognize the fixed roll
         game.doPlayerTurn(player, wallet, ""); 
-
-        // reset the fixed roll to avoid affecting other tests
         Dice.clearFixedRoll();
     }
 
