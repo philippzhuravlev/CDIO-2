@@ -30,11 +30,11 @@ class Game {
             }
 
             // normal win condition
-            if (player1.gold >= 3000) {
+            if (player1.getGold() >= 3000) {
                 System.out.println("Game ended! Player 1 won");
                 break;
             }
-            if (player2.gold >= 3000) {
+            if (player2.getGold() >= 3000) {
                 System.out.println("Game ended! Player 2 won");
                 break;
             }
@@ -43,7 +43,7 @@ class Game {
     }
 
     public void doPlayerTurn(Player player, Wallet wallet) {
-        System.out.println(player.name + ", press enter to roll the dice:");
+        System.out.println(player.getName() + ", press enter to roll the dice:");
         String input = scanner.nextLine();
         
         if (input.equals("")) { // i.e. if enter is pressed
@@ -52,15 +52,15 @@ class Game {
             Integer diceResult = die1Result + die2Result;
 
             wallet.addGold(diceResult);
-            player.gold = wallet.gold;
+            player.setGold(wallet.getGold());
             String message = Tiles.sendMessage(diceResult);
             System.out.println(message);
-            System.out.println(player.name + " rolled: " + die1Result + " and " + die2Result + " , totalling " + diceResult);
-            System.out.println(player.name + "'s total gold is now: " + wallet.gold);
+            System.out.println(player.getName() + " rolled: " + die1Result + " and " + die2Result + " , totalling " + diceResult);
+            System.out.println(player.getName() + "'s total gold is now: " + wallet.getGold());
 
             // extra roll if dice sum is 10
             if (diceResult == 10) {
-                System.out.println(player.name + " rolled: " + diceResult + " they get another turn");
+                System.out.println(player.getName() + " rolled: " + diceResult + " they get another turn");
 
                 if (isPlayer1Turn) { 
                     doPlayerTurn(player1, player1Wallet); 
@@ -75,24 +75,61 @@ class Game {
 }
 
 class Player {
-    String name;
-    Integer gold;
+    private String name;
+    private Integer gold;
 
     Player(String name, Integer gold) {
         this.name = name;
         this.gold = gold;
     }
 
-    // add get set methods
+    // getter
+    public String getName() {
+        return this.name;
+    }
+
+    public Integer getGold() {
+        return this.gold;
+    }
+
+    // setter
+    public void setName(String nameSet) {
+        this.name = nameSet;
+    }
+
+    public void setGold(Integer goldSet) {
+        this.gold = goldSet;
+    }
+
+    // public String toString() {
+    //     return Integer.toString(this.gold);
+    // }
 }
 
 class Wallet {
-    String owner;
-    Integer gold;
+    private String owner;
+    private Integer gold;
 
     public Wallet(String owner, Integer gold) {
         this.owner = owner;
         this.gold = gold;
+    }
+    // getters
+    public String getOwner() {
+        return this.owner;
+    }
+
+    public Integer getGold() {
+        return this.gold;
+    }
+
+    // setters
+    public void setOwner(String ownerSet) {
+        this.owner = ownerSet;
+    }
+
+    public void setGold(Integer goldSet) {
+        this.gold = goldSet;
     }
 
     public void addGold(Integer goldAdded) { // these are one-liners to save space
