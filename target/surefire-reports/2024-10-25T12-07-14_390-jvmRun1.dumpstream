@@ -1,0 +1,52 @@
+# Created at 2024-10-25T12:08:16.942
+[SUREFIRE] std/in stream corrupted
+java.io.IOException: Command NOOP unexpectedly read Void data with length 4.
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:130)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+
+# Created at 2024-10-25T12:11:07.280
+Unexpected IOException with stream: Player 1, press enter to roll the dice:
+
+
+# Created at 2024-10-25T12:11:07.457
+Unexpected IOException: 7,1,com.cdio2.GameTest,testWinConditionPlayer1,null,No line found,null,No line found,GameTest.setUp:19 \00BB NoSuchElement No line found,java.util.NoSuchElementException: No line found\000A\0009at com.cdio2.GameTest.setUp(GameTest.java:19)\000A
+
+
+# Created at 2024-10-25T12:11:07.466
+Unexpected IOException: 5,1,com.cdio2.GameTest,testWinConditionPlayer2,null,null,null
+
+
+# Created at 2024-10-25T12:11:07.473
+Unexpected IOException: 7,1,com.cdio2.GameTest,testWinConditionPlayer2,null,No line found,null,No line found,GameTest.setUp:19 \00BB NoSuchElement No line found,java.util.NoSuchElementException: No line found\000A\0009at com.cdio2.GameTest.setUp(GameTest.java:19)\000A
+
+
+# Created at 2024-10-25T12:11:07.477
+Unexpected IOException: 5,1,com.cdio2.GameTest,testGoldBalanceNeverNegative,null,null,null
+
+
+# Created at 2024-10-25T12:11:07.485
+Unexpected IOException: 7,1,com.cdio2.GameTest,testGoldBalanceNeverNegative,null,No line found,null,No line found,GameTest.setUp:19 \00BB NoSuchElement No line found,java.util.NoSuchElementException: No line found\000A\0009at com.cdio2.GameTest.setUp(GameTest.java:19)\000A
+
+
+# Created at 2024-10-25T12:11:07.490
+Unexpected IOException: 5,1,com.cdio2.GameTest,testGoldAdditionFromDiceRoll,null,null,null
+
+
+# Created at 2024-10-25T12:11:07.495
+Unexpected IOException: 7,1,com.cdio2.GameTest,testGoldAdditionFromDiceRoll,null,No line found,null,No line found,GameTest.setUp:19 \00BB NoSuchElement No line found,java.util.NoSuchElementException: No line found\000A\0009at com.cdio2.GameTest.setUp(GameTest.java:19)\000A
+
+
+# Created at 2024-10-25T12:11:07.499
+Unexpected IOException: 5,1,com.cdio2.GameTest,testDiceRollTotalTenTriggersExtraTurn,null,null,null
+
+
+# Created at 2024-10-25T12:11:07.506
+Unexpected IOException: 7,1,com.cdio2.GameTest,testDiceRollTotalTenTriggersExtraTurn,null,No line found,null,No line found,GameTest.setUp:19 \00BB NoSuchElement No line found,java.util.NoSuchElementException: No line found\000A\0009at com.cdio2.GameTest.setUp(GameTest.java:19)\000A
+
+
+# Created at 2024-10-25T12:11:07.512
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,com.cdio2.GameTest,null,null,null
+
+
