@@ -29,17 +29,23 @@ class Game {
                 isPlayer1Turn = true;
             }
 
-            // normal win condition
-            if (player1.getGold() >= 3000) {
-                System.out.println("Game ended! Player 1 won");
-                break;
-            }
-            if (player2.getGold() >= 3000) {
-                System.out.println("Game ended! Player 2 won");
+            if (isGameWon() == true) {
                 break;
             }
         }
         scanner.close();
+    }
+
+    public Boolean isGameWon() {
+        if (player1.getGold() >= 3000) {
+            System.out.println("Game ended! Player 1 won");
+            return true;
+        }
+        if (player2.getGold() >= 3000) {
+            System.out.println("Game ended! Player 2 won");
+            return true;
+        }
+        return false;
     }
 
     public void doPlayerTurn(Player player, Wallet wallet) {
@@ -83,7 +89,7 @@ class Player {
         this.gold = gold;
     }
 
-    // getter
+    // player getters
     public String getName() {
         return this.name;
     }
@@ -92,7 +98,7 @@ class Player {
         return this.gold;
     }
 
-    // setter
+    // player setters
     public void setName(String nameSet) {
         this.name = nameSet;
     }
@@ -100,10 +106,6 @@ class Player {
     public void setGold(Integer goldSet) {
         this.gold = goldSet;
     }
-
-    // public String toString() {
-    //     return Integer.toString(this.gold);
-    // }
 }
 
 class Wallet {
@@ -114,7 +116,8 @@ class Wallet {
         this.owner = owner;
         this.gold = gold;
     }
-    // getters
+
+    // wallet getters
     public String getOwner() {
         return this.owner;
     }
@@ -123,7 +126,7 @@ class Wallet {
         return this.gold;
     }
 
-    // setters
+    // wallet setters
     public void setOwner(String ownerSet) {
         this.owner = ownerSet;
     }
@@ -132,7 +135,7 @@ class Wallet {
         this.gold = goldSet;
     }
 
-    public void addGold(Integer goldAdded) { // these are one-liners to save space
+    public void addGold(Integer goldAdded) { // one-liners to save space
         switch (goldAdded) {
             case 2: gold += 250; break;
             case 3: gold -= 100; break;
@@ -148,57 +151,29 @@ class Wallet {
             default: break;
         }
 
-        // Wallet cannot go under 0
         if (this.gold < 0) {
             this.gold = 0;
         }
     }
 }
 class Tiles {
-    //String message = "";
-
-    public static String sendMessage(Integer tileOn) { // these are one-liners to save space
+    public static String sendMessage(Integer tileOn) { 
         String message = "";
-
         switch (tileOn) {
-            case 2:
-                message = "You entered the tower!\n Inside the tower you found a with a chest with 250 gold in it!\n";
-                break;
-            case 3:
-                message = "Oops, you fell into the Crater!\nGood news: you're now an expert in geology. Bad news: your wallet took a hit. -100 coins!\n";
-                break;
-            case 4:
-                message = "You’ve been welcomed at the Palace Gates.\nThey mistook you for royalty and handed you 100 coins. Don't ask why, just smile and wave!\n";
-                break;
-            case 5:
-                message = "Brrr! The Cold Desert is freezing your hopes and your wallet.\n Your frostbitten fingers fumble away 20 coins.\n";
-                break;
-            case 6:
-                message = "Welcome to the Walled City, where the streets are paved with gold. . .\nwell, maybe not gold, but close enough. You gain 180 coins!\n";
-                break;
-            case 7:
-                message = "You spend some time meditating at the Monastery.\nInner peace is great and all, but your wallet remains unchanged. No gains, no losses.\n";
-                break;
-            case 8:
-                message = "You venture into the Black Cave and... what’s that?\nOh, just your luck running away. You lose 70 coins!\n";
-                break;
-            case 9:
-                message = "The Huts in the Mountain welcome you with open arms and delicious stew.\nThey gift you 60 coins for being such a wonderful guest.\n";
-                break;
-            case 10:
-                message = "Beware the Werewall! Werewall? WTF?!?\nYou lose 80 coins, but the Were og the Wall gives you an extra turn. Spooky, but kinda cool, right?\n";
-                break;
-            case 11:
-                message = "You stumble into The Pit.\nTurns out it's not as deep as your financial loss. You lose 50 coins but climb out relatively unharmed.\n";
-                break;
-            case 12:
-                message = "Jackpot! You’ve struck gold in the Goldmine!\nTime to buy that solid-gold yacht you’ve always dreamed of. +650 coins!\n";
-                break;
-            default:
-                message = "You entered ?VOID? \nHow did you end up here? ";
-                break;
+            case 2: message = "You entered the tower! \n Inside the tower you found a with a chest with 250 gold in it! \n"; break;
+            case 3: message = "Oops, you fell into the Crater!\nGood news: you're now an expert in geology. Bad news: your wallet took a hit. -100 coins!\n"; break;
+            case 4: message = "You’ve been welcomed at the Palace Gates.\n They mistook you for royalty and handed you 100 coins. Don't ask why, just smile and wave! \n"; break;
+            case 5: message = "Brrr! The Cold Desert is freezing your hopes and your wallet.\n Your frostbitten fingers fumble away 20 coins.\n"; break;
+            case 6: message = "Welcome to the Walled City, where the streets are paved with gold. . .\nwell, maybe not gold, but close enough. You gain 180 coins!\n"; break;
+            case 7: message = "You spend some time meditating at the Monastery.\nInner peace is great and all, but your wallet remains unchanged. No gains, no losses.\n"; break;
+            case 8: message = "You venture into the Black Cave and... what’s that?\nOh, just your luck running away. You lose 70 coins!\n"; break;
+            case 9: message = "The Huts in the Mountain welcome you with open arms and delicious stew.\nThey gift you 60 coins for being such a wonderful guest.\n"; break;
+            case 10: message = "Beware the Werewall! Werewall? What?!?\nYou lose 80 coins, but the Were and the Wall gives you an extra turn. Spooky, but kinda cool, right?\n"; break;
+            case 11: message = "You stumble into The Pit.\nTurns out it's not as deep as your financial loss. You lose 50 coins but climb out relatively unharmed.\n"; break;
+            case 12: message = "Jackpot! You’ve struck gold in the Goldmine!\nTime to buy that solid-gold yacht you’ve always dreamed of. +650 coins!\n"; break;
+            default: message = "You entered ?VOID? \nHow did you end up here? "; break;
         }
-       return message;
+        return message;
     }
 }
 
