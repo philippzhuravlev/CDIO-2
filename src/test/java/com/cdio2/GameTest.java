@@ -37,6 +37,7 @@ public class GameTest {
     @Test
     void testDiceRollTotalTenTriggersExtraTurn() {
         Dice.setFixedRoll(5);
+        Tiles.loadLanguage("en");
         game.doPlayerTurn(player, wallet, ""); 
         Dice.clearFixedRoll();
     }

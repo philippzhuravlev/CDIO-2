@@ -1,5 +1,6 @@
-com\cdio2\Player.class
 com\cdio2\Dice.class
 com\cdio2\Main.class
 com\cdio2\Game.class
+com\cdio2\Player.class
+com\cdio2\Tiles.class
 com\cdio2\Wallet.class
