@@ -28,6 +28,11 @@ class Game {
 
         checkLanguage();
 
+        // Set the number of sides for the dice
+        System.out.println("Enter the number of sides for the dice (minimum 2):");
+        int sides = Integer.parseInt(scanner.nextLine());
+        Dice.setSides(sides);
+
         // main game loop
         while (true) {
             if (isPlayer1Turn) { 
@@ -218,6 +223,15 @@ class Tiles {
 class Dice {
     private static final Random random = new Random();
     private static Integer fixedRoll = null;
+    private static int sides = 6;
+
+    public static void setSides(int newSides) {
+        if (newSides >= 2) { // minimum 2 sides for a dice
+            sides = newSides;
+        } else {
+            System.out.println("Dice must have at least 2 sides.");
+        }
+    }
 
     // testing purposes
     public static void setFixedRoll(Integer roll) {
@@ -233,6 +247,6 @@ class Dice {
         if (fixedRoll != null) {
             return fixedRoll;
         }
-        return random.nextInt(6) + 1;
+        return random.nextInt(sides) + 1;
     }
 }
