@@ -13,12 +13,13 @@ class Main {
 }
 
 class Game {
+    // init game objects and vars
     private Scanner scanner = new Scanner(System.in); 
     private Player player1 = new Player("Player 1", 1000);
     private Player player2 = new Player("Player 2", 1000);
     private Wallet player1Wallet = new Wallet("Player 1", 1000);
     private Wallet player2Wallet = new Wallet("Player 2", 1000);
-    private Boolean isPlayer1Turn = true; 
+    private boolean isPlayer1Turn = true;
     private boolean hasExtraTurn = false;
 
     public void start() {
@@ -105,8 +106,6 @@ class Game {
         return hasExtraTurn;
     }
 }
-
-
 
 class Player {
     private String name;

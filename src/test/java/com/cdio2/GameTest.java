@@ -18,8 +18,8 @@ public class GameTest {
 
     @BeforeEach
     void setUp() {
-        wallet = new Wallet("TestPlayer", 1000);
-        player = new Player("TestPlayer", 1000);
+        wallet = new Wallet("TestPlayer", 0);
+        player = new Player("TestPlayer", 0);
         game = new Game();
     }
 
