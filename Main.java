@@ -2,6 +2,8 @@ package com.cdio2;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 class Main {
     public static void main(String[] args) {
@@ -14,10 +16,10 @@ class Main {
 class Game {
     private Scanner scanner;
     private Boolean isPlayer1Turn = true; 
-    private Player player1 = new Player("Player 1", 0);
-    private Player player2 = new Player("Player 2", 0);
-    private Wallet player1Wallet = new Wallet("Player 1", 0);
-    private Wallet player2Wallet = new Wallet("Player 2", 0);
+    private Player player1 = new Player("Player 1", 1000);
+    private Player player2 = new Player("Player 2", 1000);
+    private Wallet player1Wallet = new Wallet("Player 1", 1000);
+    private Wallet player2Wallet = new Wallet("Player 2", 1000);
     private boolean hasExtraTurn = false;
 
     public Game(Scanner scanner) {
@@ -25,6 +27,12 @@ class Game {
     }
 
     public void start() {
+
+        System.out.println("Choose language (en for english, da for danish):");
+        String langChoice = scanner.nextLine();
+        String langCode = langChoice.equals("da") ? "da" : "en";
+        Tiles.loadLanguage(langCode);
+
         this.scanner = new Scanner(System.in);
         scanner.useLocale(java.util.Locale.ENGLISH);
 
@@ -173,23 +181,32 @@ class Wallet {
 }
 
 class Tiles {
+
+    private static ResourceBundle messages;
+
+    // load language bundle
+    public static void loadLanguage(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        messages = ResourceBundle.getBundle("messages", locale);
+    }
+
     public static String sendMessage(Integer tileOn) { 
-        String message = "";
+        String messageKey;
         switch (tileOn) {
-            case 2: message = "You entered the tower! \n Inside the tower you found a with a chest with 250 gold in it! \n"; break;
-            case 3: message = "Oops, you fell into the Crater!\nGood news: you're now an expert in geology. Bad news: your wallet took a hit. -100 coins!\n"; break;
-            case 4: message = "You’ve been welcomed at the Palace Gates.\n They mistook you for royalty and handed you 100 coins. Don't ask why, just smile and wave! \n"; break;
-            case 5: message = "Brrr! The Cold Desert is freezing your hopes and your wallet.\n Your frostbitten fingers fumble away 20 coins.\n"; break;
-            case 6: message = "Welcome to the Walled City, where the streets are paved with gold. . .\nwell, maybe not gold, but close enough. You gain 180 coins!\n"; break;
-            case 7: message = "You spend some time meditating at the Monastery.\nInner peace is great and all, but your wallet remains unchanged. No gains, no losses.\n"; break;
-            case 8: message = "You venture into the Black Cave and... what’s that?\nOh, just your luck running away. You lose 70 coins!\n"; break;
-            case 9: message = "The Huts in the Mountain welcome you with open arms and delicious stew.\nThey gift you 60 coins for being such a wonderful guest.\n"; break;
-            case 10: message = "Beware the Werewall! Werewall? What?!?\nYou lose 80 coins, but the Were and the Wall gives you an extra turn. Spooky, but kinda cool, right?\n"; break;
-            case 11: message = "You stumble into The Pit.\nTurns out it's not as deep as your financial loss. You lose 50 coins but climb out relatively unharmed.\n"; break;
-            case 12: message = "Jackpot! You’ve struck gold in the Goldmine!\nTime to buy that solid-gold yacht you’ve always dreamed of. +650 coins!\n"; break;
-            default: message = "You entered ?VOID? \nHow did you end up here? "; break;
+            case 2: messageKey = "tower"; break;
+            case 3: messageKey = "crater"; break;
+            case 4: messageKey = "palace"; break;
+            case 5: messageKey = "cold_desert"; break;
+            case 6: messageKey = "walled_city"; break;
+            case 7: messageKey = "monastery"; break;
+            case 8: messageKey = "black_cave"; break;
+            case 9: messageKey = "huts"; break;
+            case 10: messageKey = "werewall"; break;
+            case 11: messageKey = "pit"; break;
+            case 12: messageKey = "goldmine"; break;
+            default: messageKey = "unknown"; break;
         }
-        return message;
+        return messages.getString(messageKey);
     }
 }
 
