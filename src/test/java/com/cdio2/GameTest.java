@@ -4,21 +4,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.Scanner;
 
 public class GameTest {
 
     private Wallet wallet;
     private Player player;
     private Game game;
-    private Scanner scanner;
 
     @BeforeEach
     void setUp() {
         wallet = new Wallet("TestPlayer", 0);
         player = new Player("TestPlayer", 0);
-        scanner = new Scanner(System.in);
-        game = new Game(scanner);
+        game = new Game();
     }
 
     @Test

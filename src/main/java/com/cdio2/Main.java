@@ -7,35 +7,28 @@ import java.util.ResourceBundle;
 
 class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Game game = new Game(scanner);
+        Game game = new Game();
         game.start();
     }
 }
 
 class Game {
-    private Scanner scanner;
-    private Boolean isPlayer1Turn = true; 
+    // init game objects and vars
+    private Scanner scanner = new Scanner(System.in); 
     private Player player1 = new Player("Player 1", 1000);
     private Player player2 = new Player("Player 2", 1000);
     private Wallet player1Wallet = new Wallet("Player 1", 1000);
     private Wallet player2Wallet = new Wallet("Player 2", 1000);
+    private boolean isPlayer1Turn = true;
     private boolean hasExtraTurn = false;
 
-    public Game(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
     public void start() {
-
-        System.out.println("Choose language (en for english, da for danish):");
-        String langChoice = scanner.nextLine();
-        String langCode = langChoice.equals("da") ? "da" : "en";
-        Tiles.loadLanguage(langCode);
-
         this.scanner = new Scanner(System.in);
         scanner.useLocale(java.util.Locale.ENGLISH);
 
+        checkLanguage();
+
+        // main game loop
         while (true) {
             if (isPlayer1Turn) { 
                 doPlayerTurn(player1, player1Wallet, null); 
@@ -50,6 +43,20 @@ class Game {
             }
         }
         scanner.close();
+    }
+
+    public void checkLanguage() {
+        System.out.println("Choose language (en for english, da for danish):");
+        String langChoice = scanner.nextLine();
+
+        String langCode;
+        if (langChoice.equals("da")) {
+            langCode = "da"; 
+        } else {
+            langCode = "en"; 
+        }
+        
+        Tiles.loadLanguage(langCode); 
     }
 
     public Boolean isGameWon() {
@@ -99,8 +106,6 @@ class Game {
         return hasExtraTurn;
     }
 }
-
-
 
 class Player {
     private String name;
