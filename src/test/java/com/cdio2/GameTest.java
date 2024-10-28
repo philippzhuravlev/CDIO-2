@@ -9,21 +9,18 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
-import java.util.Scanner;
 
 public class GameTest {
 
     private Wallet wallet;
     private Player player;
     private Game game;
-    private Scanner scanner;
 
     @BeforeEach
     void setUp() {
         wallet = new Wallet("TestPlayer", 1000);
         player = new Player("TestPlayer", 1000);
-        scanner = new Scanner(System.in);
-        game = new Game(scanner);
+        game = new Game();
     }
 
     @Test
