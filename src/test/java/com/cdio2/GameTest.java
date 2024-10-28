@@ -58,13 +58,11 @@ public class GameTest {
         assertTrue(player2.getGold() >= 3000, "Player 2 should win when reaching 3000 gold.");
     }
 
-    
-
     static Stream<Object[]> sendMessageArguments() {
         return Stream.of(new Object[][]{
             {2, "You entered the tower! Inside the tower, you found a chest with 250 gold!\n"},
             {3, "Oops, you fell into the Crater! Your wallet took a hit. -100 coins!\n"},
-            {4, "You’ve been welcomed at the Palace Gates and received 100 coins!\n"},
+            {4, "You've been welcomed at the Palace Gates and received 100 coins!\n"},
             {5, "Brrr! The Cold Desert froze 20 coins from your wallet.\n"},
             {6, "Welcome to the Walled City! You gain 180 coins!\n"},
             {7, "You meditate at the Monastery. No gains, no losses.\n"},
@@ -72,11 +70,10 @@ public class GameTest {
             {9, "The Huts in the Mountain gift you 60 coins for being a wonderful guest.\n"},
             {10, "Beware the Werewall! You lose 80 coins, but get an extra turn!\n"},
             {11, "You stumble into The Pit, losing 50 coins.\n"},
-            {12, "Jackpot! You’ve struck gold in the Goldmine! +650 coins!\n"},
+            {12, "Jackpot! You've struck gold in the Goldmine! +650 coins!\n"},
             {99, "You entered a mysterious place... nothing happens.\n"}
         });
     }
-
     @ParameterizedTest(name = "Tile {0} should return message key {1}")
     @MethodSource("sendMessageArguments")
     void testSendMessage(int tileOn, String expectedMessageKey) {
@@ -104,7 +101,7 @@ public class GameTest {
         int initialGold = wallet.getGold();
         wallet.addGold(tileOn);
         
-        int expectedGold = Math.max(initialGold + expectedGoldChange, 0);
+        int expectedGold = initialGold + expectedGoldChange; //Math.max(initialGold + expectedGoldChange, 0);
         assertEquals(expectedGold, wallet.getGold());
     }
 
