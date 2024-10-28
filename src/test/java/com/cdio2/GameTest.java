@@ -8,6 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
 public class GameTest {
@@ -39,7 +41,7 @@ public class GameTest {
     @Test
     void testDiceRollTotalTenTriggersExtraTurn() {
         Dice.setFixedRoll(5);
-        Tiles.loadLanguage("en");
+        Game.loadLanguage("en");
         game.doPlayerTurn(player, wallet, ""); 
         Dice.clearFixedRoll();
     }
@@ -75,8 +77,9 @@ public class GameTest {
     @ParameterizedTest(name = "Tile {0} should return message key {1}")
     @MethodSource("sendMessageArguments")
     void testSendMessage(int tileOn, String expectedMessageKey) {
-        Tiles.loadLanguage("en");
-        assertEquals(expectedMessageKey, Tiles.sendMessage(tileOn));
+        Game.loadLanguage("en");
+        ResourceBundle messages = game.getMessages();
+        assertEquals(expectedMessageKey, Tiles.sendMessage(tileOn, messages));
     }
 
     @ParameterizedTest(name = "Tile {0} should adjust gold by {1}")
@@ -99,7 +102,7 @@ public class GameTest {
         int initialGold = wallet.getGold();
         wallet.addGold(tileOn);
         
-        int expectedGold = initialGold + expectedGoldChange; //Math.max(initialGold + expectedGoldChange, 0);
+        int expectedGold = Math.max(initialGold + expectedGoldChange, 0);
         assertEquals(expectedGold, wallet.getGold());
     }
 
