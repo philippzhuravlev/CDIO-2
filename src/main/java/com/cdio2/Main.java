@@ -7,24 +7,19 @@ import java.util.ResourceBundle;
 
 class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Game game = new Game(scanner);
+        Game game = new Game();
         game.start();
     }
 }
 
 class Game {
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in); 
     private Boolean isPlayer1Turn = true; 
     private Player player1 = new Player("Player 1", 1000);
     private Player player2 = new Player("Player 2", 1000);
     private Wallet player1Wallet = new Wallet("Player 1", 1000);
     private Wallet player2Wallet = new Wallet("Player 2", 1000);
     private boolean hasExtraTurn = false;
-
-    public Game(Scanner scanner) {
-        this.scanner = scanner;
-    }
 
     public void start() {
 
