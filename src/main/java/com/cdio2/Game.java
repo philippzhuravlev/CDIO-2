@@ -20,6 +20,9 @@ class Game {
         scanner.useLocale(java.util.Locale.ENGLISH);
 
         checkLanguage();
+        System.out.println(getMessage("game.rules1"));
+        System.out.println(getMessage("game.rules2"));
+        System.out.println(getMessage("game.rules3"));
 
         // Set the number of sides for the dice
         System.out.println(getMessage("enter.sides"));
