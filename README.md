@@ -52,22 +52,18 @@ To compile and package the application, use Maven:
 1. **Compile the Code**:
    ```bash
    mvn compile
-   ´´´
 
-This will compile all source files located in the `src/main/java` directory.
+   This will compile all source files located in the `src/main/java` directory.
 
 2. **Run Tests**:
-   
    ```bash
    mvn test
-   ´´´
-This command will run all test cases located in src/test/java
+   This command will run all test cases located in src/test/java
 
 3. **Build the Project**:
     - Generate a `.jar` file by running:
-    ```bash
-    mvn package
-    ´´´
-- the output '.jar' file will be located in the 'target' folder
+      ```bash
+      mvn package
+   - the output `.jar` file will be located in the `target` folder
 
 
