@@ -1,3 +1,6 @@
+### LINK TO THE GITHUB REPO
+https://github.com/philippzhuravlev/CDIO-2.git
+
 ### System Requirements for Java Console Game
 
 #### Minimum Requirements
@@ -21,6 +24,14 @@ Additional requirements depend on the method used to run the application:
 - **Java Development Kit (JDK)**: Version 17 or higher (if compiling and building from source)
 - **JRE** (Java Runtime Environment) for running the `.jar` file, if the `.exe` file is not being used.
 - **Maven** for compiling and building the project from source.
+   https://maven.apache.org/install.html
+
+### .EXE AND .JAR
+There will be both a `.exe` and a `.jar` file in the target folder.
+You can run the `.exe` file or open a terminal and type
+   ```bash
+   java -jar CDIO.2.1.0.jar
+   ```
 
 ### Executing, compiling and installing the game
 
@@ -31,13 +42,12 @@ The source code is stored in a Git repository. Follow these steps to clone and s
 1. **Clone the Repository**:
    - Use the following Git command to clone the repository:
      ```bash
-     git clone <repository-url>
+     git clone https://github.com/philippzhuravlev/CDIO-2.git
      ```
-   - Replace `<repository-url>` with the actual URL of the Git repository.
 
 2. **Open Project in IDE**:
    - Launch your preferred IDE (e.g., Visual Studio Code, IntelliJ IDEA).
-   - Open the cloned repository folder in the IDE. The folder structure should resemble the one shown in the project layout, with directories for `src`, `resources`, and `test`.
+   - Open the cloned repository folder in the IDE.
 
 3. **Ensure Dependencies are Installed**:
    - In the terminal, navigate to the project root and use Maven to download dependencies:
@@ -45,25 +55,25 @@ The source code is stored in a Git repository. Follow these steps to clone and s
      mvn install
      ```
 
-### 3. Compiling and Building the Project
+2. **Compiling and Building the Project**
 
-To compile and package the application, use Maven:
-
-1. **Compile the Code**:
-   ```bash
-   mvn compile
-
-   This will compile all source files located in the `src/main/java` directory.
-
-2. **Run Tests**:
-   ```bash
-   mvn test
-   This command will run all test cases located in src/test/java
-
-3. **Build the Project**:
-    - Generate a `.jar` file by running:
+   To compile and package the application, use Maven:
+   
+   1. **Compile the Code**:
       ```bash
-      mvn package
-   - the output `.jar` file will be located in the `target` folder
+      mvn compile
+   
+   This will compile all source files located in the `src/main/java` directory.
+   
+   2. **Run Tests**:
+      ```bash
+      mvn test
+   This command will run all test cases located in src/test/java
+   
+   3. **Build the Project**:
+       - Generate a `.jar` file by running:
+         ```bash
+         mvn package
+      - the output `.jar` file will be located in the `target` folder
 
 
