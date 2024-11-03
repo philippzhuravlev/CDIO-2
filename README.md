@@ -19,7 +19,7 @@ https://github.com/philippzhuravlev/CDIO-2.git
 - **Graphics**: Integrated graphics (no specific GPU required)
 - **Storage**: 100 MB free space
 
-## Additional requirements depend on the method used to run the application:
+## Additional requirements depend on the method used to run the game:
 
 - **Java Development Kit (JDK)**: Version 17 or higher (if compiling and building from source)
 - **JRE** (Java Runtime Environment) for running the `.jar` file, if the `.exe` file is not being used.
@@ -28,7 +28,7 @@ https://github.com/philippzhuravlev/CDIO-2.git
 
 # .EXE AND .JAR
 There will be both a `.exe` and a `.jar` file in the target folder.
-You can run the `.exe` file or open a terminal and type
+You can run the `.exe` file or open a terminal in the `target` folder and type
    ```bash
    java -jar CDIO.2.1.0.jar
    ```
@@ -57,7 +57,7 @@ The source code is stored in a Git repository. Follow these steps to clone and s
 
 2. **Compiling and Building the Project**
 
-   To compile and package the application, use Maven:
+   To compile and package the game, use Maven:
    
    1. **Compile the Code**:
       ```bash
