@@ -24,6 +24,7 @@ Additional requirements depend on the method used to run the application:
 - **Java Development Kit (JDK)**: Version 17 or higher (if compiling and building from source)
 - **JRE** (Java Runtime Environment) for running the `.jar` file, if the `.exe` file is not being used.
 - **Maven** for compiling and building the project from source.
+   https://maven.apache.org/install.html
 
 ### Executing, compiling and installing the game
 
@@ -36,7 +37,6 @@ The source code is stored in a Git repository. Follow these steps to clone and s
      ```bash
      git clone https://github.com/philippzhuravlev/CDIO-2.git
      ```
-   - Replace `https://github.com/philippzhuravlev/CDIO-2.git` with the actual URL of the Git repository.
 
 2. **Open Project in IDE**:
    - Launch your preferred IDE (e.g., Visual Studio Code, IntelliJ IDEA).
