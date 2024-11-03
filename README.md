@@ -27,7 +27,11 @@ Additional requirements depend on the method used to run the application:
    https://maven.apache.org/install.html
 
 ### .EXE AND .JAR
-There will be both a `.exe` and a `.jar` file in the target folder
+There will be both a `.exe` and a `.jar` file in the target folder.
+You can run the `.exe` file or open a terminal and type
+   ```bash
+   java -jar CDIO.2.1.0.jar
+   ```
 
 ### Executing, compiling and installing the game
 
