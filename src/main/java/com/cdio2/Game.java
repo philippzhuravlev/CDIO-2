@@ -40,6 +40,7 @@ class Game {
             }
 
             if (isGameWon() == true) {
+                scanner.nextLine();
                 break;
             }
         }
