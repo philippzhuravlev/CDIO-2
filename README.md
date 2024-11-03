@@ -26,6 +26,9 @@ Additional requirements depend on the method used to run the application:
 - **Maven** for compiling and building the project from source.
    https://maven.apache.org/install.html
 
+### .EXE AND .JAR
+There will be both a `.exe` and a `.jar` file in the target folder
+
 ### Executing, compiling and installing the game
 
 To execute the game you should either use the `.exe` or follow the steps below to make a `.jar`.
